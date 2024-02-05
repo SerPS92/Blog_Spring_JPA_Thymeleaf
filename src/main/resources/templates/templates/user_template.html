@@ -1,12 +1,30 @@
-<div th:fragment="header">
+<div th:fragment="header_admin">
 	
 	<div class="container-fluid fh5co_header_bg">
 		<div class="container">
 			<div class="row">
-				<div class="col-16 fh5co_mediya_center">
+				<div class="col-16 fh5co_mediya_center" style="margin-right: 10px">
 					<a href="#" class="color_fff fh5co_mediya_setting">
 						<i class="fa fa-clock-o" style="font-size: 24px;"></i>&nbsp;
-						<span >DATE</span>
+						<span>DATE</span><br>
+					</a>
+				</div>
+				<div class="col-16 fh5co_mediya_center" style="margin-right: 10px">
+					<a href="#" class="color_fff fh5co_mediya_setting">
+						<i class="fa fa-cog fa-fw" style="font-size: 24px;"></i>
+						<span>Admin mode</span><br>
+					</a>
+				</div>
+				<div class="col-16 fh5co_mediya_center" style="margin-right: 10px">
+					<a th:href="@{/user/users}" class="color_fff fh5co_mediya_setting">
+						<i class="fa fa-users" style="font-size: 24px;"></i>
+						<span>Users</span><br>
+					</a>
+				</div>
+				<div class="col-16 fh5co_mediya_center" style="margin-right: 10px">
+					<a href="#" class="color_fff fh5co_mediya_setting">
+						<i class="fa fa-pencil" style="font-size: 24px;"></i>
+						<span>Create new post</span><br>
 					</a>
 				</div>
 			</div>
@@ -17,7 +35,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-12 col-md-3 fh5co_padding_menu">
-					<img src="images/logo.png" alt="img" class="fh5co_logo_width"/>
+					<img src="/images/logo.png" alt="img" class="fh5co_logo_width"/>
 				</div>
 				<div class="col-12 col-md-9 align-self-center fh5co_mediya_right">
 					<div class="text-center d-inline-block">
@@ -61,7 +79,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<li class="nav-item active">
-							<a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+							<a class="nav-link" th:href="@{/home/}">Home <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item ">
 							<a class="nav-link" href="blog.html">Blog <span class="sr-only">(current)</span></a>
@@ -93,6 +111,10 @@
 							<a class="nav-link" href="Contact_us.html">Contact <span
 									class="sr-only">(current)</span></a>
 						</li>
+						<li class="nav-item ">
+							<a class="nav-link" href="">Create new Post <span
+									class="sr-only">(current)</span></a>
+						</li>
 					</ul>
 				</div>
 			</nav>
@@ -107,7 +129,7 @@
 	<div class="container-fluid fh5co_footer_bg pb-3">
 		<div class="container animate-box">
 			<div class="row">
-				<div class="col-12 spdp_right py-5"><img src="images/white_logo.png" alt="img" class="footer_logo"/>
+				<div class="col-12 spdp_right py-5"><img src="/images/white_logo.png" alt="img" class="footer_logo"/>
 				</div>
 				<div class="clearfix"></div>
 				<div class="col-12 col-md-4 col-lg-3">
@@ -157,27 +179,15 @@
 				</div>
 				<div class="col-12 col-md-12 col-lg-4 ">
 					<div class="footer_main_title py-3"> Last Modified Posts</div>
-					<a href="#" class="footer_img_post_6"><img src="images/allef-vinicius-108153.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/32-450x260.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/download (1).jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/science-578x362.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/vil-son-35490.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/zack-minor-15104.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/download.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/download (2).jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="images/ryan-moreno-98837.jpg" alt="img"/></a>
-				</div>
-			</div>
-			<div class="row justify-content-center pt-2 pb-4">
-				<div class="col-12 col-md-8 col-lg-7 ">
-					<div class="input-group">
-						<span class="input-group-addon fh5co_footer_text_box" id="basic-addon1"><i
-								class="fa fa-envelope"></i></span>
-						<input type="text" class="form-control fh5co_footer_text_box" placeholder="Enter your email..."
-						       aria-describedby="basic-addon1">
-						<a href="#" class="input-group-addon fh5co_footer_subcribe" id="basic-addon12"> <i
-								class="fa fa-paper-plane-o"></i>&nbsp;&nbsp;Subscribe</a>
-					</div>
+					<a href="#" class="footer_img_post_6"><img src="/images/allef-vinicius-108153.jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/32-450x260.jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/download (1).jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/science-578x362.jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/vil-son-35490.jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/zack-minor-15104.jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/download.jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/download (2).jpg" alt="img"/></a>
+					<a href="#" class="footer_img_post_6"><img src="/images/ryan-moreno-98837.jpg" alt="img"/></a>
 				</div>
 			</div>
 		</div>
@@ -186,7 +196,7 @@
 	<div class="container-fluid fh5co_footer_right_reserved">
 		<div class="container">
 			<div class="row  ">
-				<div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2018, All rights reserved. Design by <a
+				<div class="col-12 col-md-6 py-4 Reserved"> © Copyright 2024, All rights reserved. Design by <a
 						href="https://freehtml5.co" title="Free HTML5 Bootstrap templates">FreeHTML5.co</a>.
 				</div>
 				<div class="col-12 col-md-6 spdp_right py-4">

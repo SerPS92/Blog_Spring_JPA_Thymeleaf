@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Spring Blog</title>
+	<link th:href="@{/css/media_query.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"
+	      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{https://fonts.googleapis.com/css?family=Poppins}" rel="stylesheet">
+	<link th:href="@{/css/owl.carousel.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/owl.theme.default.css}" rel="stylesheet" type="text/css"/>
+	<!-- Bootstrap CSS -->
+	<link th:href="@{/css/style_1.css}" rel="stylesheet" type="text/css"/>
+	<!-- Modernizr JS -->
+	<script th:src="@{/js/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+
+<div th:insert="~{/templates/user_template.html::header_admin}"></div>
+
+<div class="container">
+	
+	<form class="form-horizontal" th:action="@{/user/update}" method="post">
+		<input type="hidden" th:value="${user.id}" name="id">
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="name">Name:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="name" name="name"
+				       th:value="${user.name}" autocomplete="off" required>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="username">Username:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="username" name="username"
+				       th:value="${user.username}" autocomplete="off" required>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="password">Password:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="password" name="password"
+				       th:value="${user.password}" autocomplete="off" required>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="type">Type: </label>
+			<div class="col-sm-10">
+				<select id="type" name="type" class="col-sm-12">
+					<option th:disabled="${true}">Select type</option>
+					<option th:value="admin"
+							th:selected="${user.type == 'admin'}">Admin</option>
+					<option th:value="writer"
+							th:selected="${user.type == 'writer'}">Writer</option>
+				</select>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-6" for="registrationDate">Registration date: </label>
+			<div class="col-sm-10">
+				<input type="date" class="form-control" id="registrationDate" name="registrationDate"
+				       th:value="${#dates.format(user.registrationDate, 'yyyy-MM-dd')}" autocomplete="off" required>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="email">Email:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="email" name="email"
+				       th:value="${user.email}" autocomplete="off" required>
+			</div>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="phone">Phone:</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="phone" name="phone"
+				       th:value="${user.phone}" autocomplete="off" required>
+			</div>
+		</div>
+		<br>
+		
+		<div class="col-md-12">
+			<button type="submit" class="btn btn-primary"
+			        style="background-color: #f5bc04; color: #FFFFFF; padding: 10px 15px;
+	   border-radius: 5px; text-decoration: none; display: inline-block;">Save
+			</button>
+		</div>
+	</form>
+
+</div>
+
+<div th:insert="~{/templates/user_template.html::footer}"></div>
+
+<div class="gototop js-top">
+	<a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js}"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js}"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<!-- Waypoints -->
+<script th:src="@{/js/jquery.waypoints.min.js}"></script>
+<!-- Main -->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

@@ -2,6 +2,7 @@ package com.example.blog.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,7 @@ public class User {
     private String username;
     private String password;
     private String type;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date registrationDate;
     private String email;
     private String phone;
