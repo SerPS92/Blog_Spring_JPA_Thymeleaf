@@ -34,6 +34,9 @@ public class UserController {
         Pageable pageable = PageRequest.of(page, size);
         Page<User> users = userService.findAll(pageable);
         model.addAttribute("users", users);
+        model.addAttribute("usersNumber", users.getTotalElements());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", users.getTotalPages());
         return "user/users";
     }
 
