@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Spring Blog</title>
+	<link th:href="@{/css/media_query.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"
+	      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{https://fonts.googleapis.com/css?family=Poppins}" rel="stylesheet">
+	<link th:href="@{/css/owl.carousel.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/owl.theme.default.css}" rel="stylesheet" type="text/css"/>
+	<!-- Bootstrap CSS -->
+	<link th:href="@{/css/style_1.css}" rel="stylesheet" type="text/css"/>
+	<!-- Modernizr JS -->
+	<script th:src="@{/js/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+
+<div th:insert="~{/templates/user_template.html::header_admin}"></div>
+
+<div class="container">
+	
+	<form th:action="@{/article/update}" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="id" th:value="${article.id}">
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="title">Title</label>
+			<input type="text" id="title" name="title" class="form-control"
+			th:value="${article.title}">
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="subtitle">Subtitle</label>
+			<input type="text" name="subtitle" id="subtitle" class="form-control"
+			th:value="${article.subtitle}">
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="text">Text</label>
+			<textarea id="text" name="text" th:text="${article.text}"></textarea>
+		</div>
+		<br>
+		<div class="col-md-4">
+			<label class="control-label col-sm-12" for="category">Category: </label>
+			<select id="category" name="category" class="col-sm-12">
+				<option th:disabled="${true}">Select type</option>
+				<option th:value="Sports"
+						th:selected="${article.category == 'Sports'}">Sports</option>
+			</select>
+		</div>
+		<br>
+		<div class="col-md-12">
+			<label class="control-label col-sm-12" for="img">Image: </label>
+			<input type="file" class="form-control-file" id="img" name="img">
+		</div>
+		<br>
+		
+		<div class="col-md-12">
+			<button type="submit" style="background-color: #f5bc04; color: #FFFFFF;
+			padding: 10px 15px; border-radius: 5px;">Publish</button>
+		</div>
+	</form>
+
+
+</div>
+
+<div th:insert="~{/templates/user_template.html::footer}"></div>
+
+<div class="gototop js-top">
+	<a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+
+<script th:src="@{https://cdn.ckeditor.com/ckeditor5/35.0.0/classic/ckeditor.js}"></script>
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js}"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js}"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<!-- Waypoints -->
+<script th:src="@{/js/jquery.waypoints.min.js}"></script>
+<!-- Main -->
+<script th:src="@{/js/main.js}"></script>
+
+<script>
+	ClassicEditor
+		.create(document.querySelector('#text'))
+		.catch(error => {
+			console.error(error);
+		});
+</script>
+
+
+</body>
+</html>

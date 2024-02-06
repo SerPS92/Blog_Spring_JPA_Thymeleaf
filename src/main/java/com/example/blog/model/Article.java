@@ -22,6 +22,7 @@ public class Article {
     private String text;
     private Date date;
     private String category;
+    private String image;
 
     @ManyToOne
     private User user;
