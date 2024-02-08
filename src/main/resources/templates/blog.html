@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html lang="en" class="no-js" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Spring Blog</title>
+	<link th:href="@{/css/media_query.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}" rel="stylesheet"
+	      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link th:href="@{/css/animate.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{https://fonts.googleapis.com/css?family=Poppins}" rel="stylesheet">
+	<link th:href="@{/css/owl.carousel.css}" rel="stylesheet" type="text/css"/>
+	<link th:href="@{/css/owl.theme.default.css}" rel="stylesheet" type="text/css"/>
+	<!-- Bootstrap CSS -->
+	<link th:href="@{/css/style_1.css}" rel="stylesheet" type="text/css"/>
+	<!-- Modernizr JS -->
+	<script th:src="@{/js/modernizr-3.5.0.min.js}"></script>
+</head>
+<body>
+
+<div th:insert="~{templates/user_template.html::header_admin}"></div>
+
+<div class="container-fluid pb-4 pt-4 paddding">
+	<div class="container paddding">
+		<div class="row mx-0">
+			<div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+				<div>
+					<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">News</div>
+				</div>
+				<div class="row pb-4" th:each="article:${articles}">
+					<div class="col-md-5">
+						<div class="fh5co_hover_news_img">
+							<div class="fh5co_news_img">
+								<img th:src="@{/images/{img} (img = ${article.image})}"/>
+							</div>
+							<div></div>
+						</div>
+					</div>
+					<div class="col-md-7 animate-box">
+						<a th:href="@{/home/show/{id} (id = ${article.id})}"
+						   class="fh5co_magna py-2"
+						   th:text="${article.title}"></a>
+						<br>
+						<h12 th:text="${article.subtitle}"></h12>
+						<br>
+						<a class="fh5co_mini_time py-3"
+						   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm')} + ' Nombre de autor'"></a>
+					</div>
+				</div>
+			
+			</div>
+			<div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+				<div>
+					<div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">Tags</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="fh5co_tags_all">
+					<a href="#" class="fh5co_tagg">Business</a>
+					<a href="#" class="fh5co_tagg">Technology</a>
+					<a href="#" class="fh5co_tagg">Sport</a>
+					<a href="#" class="fh5co_tagg">Art</a>
+					<a href="#" class="fh5co_tagg">Lifestyle</a>
+					<a href="#" class="fh5co_tagg">Three</a>
+					<a href="#" class="fh5co_tagg">Photography</a>
+					<a href="#" class="fh5co_tagg">Lifestyle</a>
+					<a href="#" class="fh5co_tagg">Art</a>
+					<a href="#" class="fh5co_tagg">Education</a>
+					<a href="#" class="fh5co_tagg">Social</a>
+					<a href="#" class="fh5co_tagg">Three</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row mx-0 animate-box justify-content-center text-center" data-animate-effect="fadeInUp">
+			<div th:if="${articlesNumber > 0}">
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<div th:if="${currentPage > 0}">
+							<li class="page-item">
+								<a class="page-link"
+								   th:href="@{/home/blog(page=${currentPage - 1})}"
+								   aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+						</div>
+						<div th:if="${currentPage == 0}">
+							<li class="page-item">
+								<a class="page-link" href="" aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+						</div>
+						<th:block th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
+						          th:if="${pageNumber >= currentPage - 2 and pageNumber <= currentPage + 2}">
+							<li th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
+								<a class="page-link" style="background-color: #f5bc04; color: #FFFFFF;"
+								   th:href="@{/home/blog(page=${pageNumber})}"
+								   th:text="${pageNumber + 1}"></a>
+							</li>
+						</th:block>
+						<div th:if="${currentPage < totalPages -1}">
+							<li class="page-item">
+								<a class="page-link"
+								   th:href="@{/home/blog(page=${currentPage + 1})}"
+								   aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</div>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:insert="~{templates/user_template.html::footer}"></div>
+
+<div class="gototop js-top">
+	<a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+</div>
+
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js}"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js}"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<!-- Waypoints -->
+<script th:src="@{/js/jquery.waypoints.min.js}"></script>
+<!-- Main -->
+<script th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

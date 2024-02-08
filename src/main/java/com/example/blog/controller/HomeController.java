@@ -62,6 +62,20 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/blog")
+    public String blog(@RequestParam(name = "page", defaultValue = "0") int page,
+                       @RequestParam(name = "size", defaultValue = "5") int size,
+                       Model model){
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<Article> articles = articleService.findAll(pageable);
+        model.addAttribute("articles", articles);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("articlesNumber", articles.getTotalElements());
+        model.addAttribute("totalPages", articles.getTotalPages());
+        return "blog";
+    }
+
     @GetMapping("/show/{id}")
     public String show(@PathVariable(name = "id")int id,
                        Model model){
@@ -70,7 +84,7 @@ public class HomeController {
             Article article = optionalArticle.get();
             model.addAttribute("article", article);
         }
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
         List<Article> allArticles = articleService.findArticles(sort);
         model.addAttribute("allArticles", allArticles);
 
