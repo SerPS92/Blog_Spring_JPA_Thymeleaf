@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -59,5 +60,20 @@ public class HomeController {
         model.addAttribute("totalPages", articles.getTotalPages());
 
         return "index";
+    }
+
+    @GetMapping("/show/{id}")
+    public String show(@PathVariable(name = "id")int id,
+                       Model model){
+        Optional<Article> optionalArticle = articleService.findById(id);
+        if(optionalArticle.isPresent()){
+            Article article = optionalArticle.get();
+            model.addAttribute("article", article);
+        }
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        List<Article> allArticles = articleService.findArticles(sort);
+        model.addAttribute("allArticles", allArticles);
+
+        return "article";
     }
 }

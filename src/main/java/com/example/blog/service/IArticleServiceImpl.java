@@ -3,7 +3,6 @@ package com.example.blog.service;
 import com.example.blog.model.Article;
 import com.example.blog.repository.IArticleRepo;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -35,8 +34,8 @@ public class IArticleServiceImpl implements IArticleService {
     }
 
     @Override
-    public Article save(Article article) {
-        return articleRepo.save(article);
+    public void save(Article article) {
+        articleRepo.save(article);
     }
 
     @Override
