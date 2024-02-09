@@ -2,6 +2,7 @@ package com.example.blog.controller;
 
 import com.example.blog.model.Article;
 import com.example.blog.service.IArticleService;
+import com.example.blog.service.MailSenderService;
 import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -26,8 +24,11 @@ public class HomeController {
 
     private final Logger log = LoggerFactory.getLogger(HomeController.class);
     private final IArticleService articleService;
+    private final MailSenderService mailSenderService;
 
-    public HomeController(IArticleService articleService) {
+    public HomeController(IArticleService articleService,
+                          MailSenderService mailSenderService) {
+        this.mailSenderService = mailSenderService;
         this.articleService = articleService;
     }
 
@@ -89,5 +90,21 @@ public class HomeController {
         model.addAttribute("allArticles", allArticles);
 
         return "article";
+    }
+
+    @GetMapping("/contact")
+    public String contact(){
+        return "contact";
+    }
+
+    @PostMapping("/send")
+    public String contact(@RequestParam(name = "name") String name,
+                          @RequestParam(name = "email")String email,
+                          @RequestParam(name = "subject")String subject,
+                          @RequestParam(name = "text")String text){
+        String to = "yourEmail";
+        String content = "Name: " + name + "\n" + "Email: " + email + "\n" + "\n" + text;
+        mailSenderService.sendEmail(to, subject, content);
+        return "redirect:/home/";
     }
 }

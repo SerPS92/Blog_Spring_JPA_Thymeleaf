@@ -87,13 +87,6 @@
 								</a>
 							</li>
 						</div>
-						<div th:if="${currentPage == 0}">
-							<li class="page-item">
-								<a class="page-link" href="" aria-label="Previous">
-									<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-						</div>
 						<th:block th:each="pageNumber : ${#numbers.sequence(0, totalPages - 1)}"
 						          th:if="${pageNumber >= currentPage - 2 and pageNumber <= currentPage + 2}">
 							<li th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
