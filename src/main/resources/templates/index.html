@@ -33,10 +33,10 @@
 					<div class="fh5co_suceefh5co_height_position_absolute"></div>
 					<div class="fh5co_suceefh5co_height_position_absolute_font">
 						<div class=""><a href="#" class="color_fff">
-							<i class="fa fa-clock-o"
+							<i class="fa fa-clock-o" style="margin-left: -20px;"
 							   th:text="${#dates.format(latestArticle.date, 'dd/MM/yyyy HH:mm')}"></i></a>
 						</div>
-						<div class="">
+						<div class="" style="margin-left: -20px; margin-top: -7px;">
 							<a th:href="@{/home/show/{id} (id = ${latestArticle.id})}" class="fh5co_good_font"
 							   th:text="${latestArticle.title}"></a>
 						</div>
@@ -50,12 +50,12 @@
 						<div class="fh5co_suceefh5co_height_2"><img th:src="@{/images/{img} (img = ${article.image})}"/>
 							<div class="fh5co_suceefh5co_height_position_absolute"></div>
 							<div class="fh5co_suceefh5co_height_position_absolute_font_2">
-								<div class="">
+								<div class="" style="margin-left: -20px; margin-top: -7px;">
 									<a href="#" class="color_fff">
 										<i class="fa fa-clock-o"
 										   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm')}"></i></a>
 								</div>
-								<div class="">
+								<div class="" style="margin-left: -20px; margin-top: -7px;">
 									<a th:href="@{/home/show/{id} (id = ${article.id})}"
 									   class="fh5co_good_font_2" th:text="${article.title}"></a>
 								</div>
