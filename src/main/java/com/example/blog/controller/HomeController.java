@@ -34,11 +34,12 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(@RequestParam(name = "page", defaultValue = "0") int page,
-                       @RequestParam(name = "size", defaultValue = "4") int size,
+                       @RequestParam(name = "size", defaultValue = "5") int size,
                        HttpSession session,
                        Model model) {
         Date currentDate = new Date();
         session.setAttribute("currentDate", currentDate);
+        session.setAttribute("position", "home");
 
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         List<Article> allArticles = articleService.findArticles(sort);
@@ -66,7 +67,9 @@ public class HomeController {
     @GetMapping("/blog")
     public String blog(@RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "5") int size,
+                       HttpSession session,
                        Model model){
+        session.setAttribute("position", "blog");
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Article> articles = articleService.findAll(pageable);
@@ -93,7 +96,8 @@ public class HomeController {
     }
 
     @GetMapping("/contact")
-    public String contact(){
+    public String contact(HttpSession session){
+        session.setAttribute("position", "contact");
         return "contact";
     }
 
