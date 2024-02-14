@@ -21,7 +21,14 @@
 </head>
 <body>
 
-<div th:insert="~{templates/user_template.html::header_admin}"></div>
+<div th:insert="~{templates/user_template.html::header_admin}"
+     th:if="${session.type == 'admin'}"></div>
+
+<div th:insert="~{templates/user_template.html::header_writer}"
+     th:if="${session.type == 'writer'}"></div>
+
+<div th:insert="~{templates/user_template.html::header_user}"
+     th:unless="${session.type == 'admin' or session.type == 'writer'}"></div>
 
 <div class="container-fluid pb-4 pt-4 paddding">
 	<div class="container paddding">
@@ -81,7 +88,7 @@
 						<div th:if="${currentPage > 0}">
 							<li class="page-item">
 								<a class="page-link"
-								   th:href="@{/home/blog(page=${currentPage - 1})}"
+								   th:href="@{/blog(page=${currentPage - 1})}"
 								   aria-label="Previous">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
@@ -91,14 +98,14 @@
 						          th:if="${pageNumber >= currentPage - 2 and pageNumber <= currentPage + 2}">
 							<li th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
 								<a class="page-link" style="background-color: #f5bc04; color: #FFFFFF;"
-								   th:href="@{/home/blog(page=${pageNumber})}"
+								   th:href="@{/blog(page=${pageNumber})}"
 								   th:text="${pageNumber + 1}"></a>
 							</li>
 						</th:block>
 						<div th:if="${currentPage < totalPages -1}">
 							<li class="page-item">
 								<a class="page-link"
-								   th:href="@{/home/blog(page=${currentPage + 1})}"
+								   th:href="@{/blog(page=${currentPage + 1})}"
 								   aria-label="Next">
 									<span aria-hidden="true">&raquo;</span>
 								</a>

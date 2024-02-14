@@ -21,7 +21,14 @@
 </head>
 <body>
 
-<div th:insert="~{templates/user_template.html::header_admin}"></div>
+<div th:insert="~{templates/user_template.html::header_admin}"
+     th:if="${session.type == 'admin'}"></div>
+
+<div th:insert="~{templates/user_template.html::header_writer}"
+     th:if="${session.type == 'writer'}"></div>
+
+<div th:insert="~{templates/user_template.html::header_user}"
+     th:unless="${session.type == 'admin' or session.type == 'writer'}"></div>
 
 <div class="container">
 	<br>

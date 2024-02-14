@@ -21,7 +21,15 @@
 </head>
 <body>
 
-<div th:insert="~{templates/user_template.html::header_admin}"></div>
+<div th:insert="~{templates/user_template.html::header_admin}"
+     th:if="${session.type == 'admin'}"></div>
+
+<div th:insert="~{templates/user_template.html::header_writer}"
+     th:if="${session.type == 'writer'}"></div>
+
+<div th:insert="~{templates/user_template.html::header_user}"
+     th:unless="${session.type == 'admin' or session.type == 'writer'}"></div>
+
 
 <div class="container">
 	
@@ -37,7 +45,7 @@
 							   th:text="${#dates.format(latestArticle.date, 'dd/MM/yyyy HH:mm')}"></i></a>
 						</div>
 						<div class="" style="margin-left: -20px; margin-top: -7px;">
-							<a th:href="@{/home/show/{id} (id = ${latestArticle.id})}" class="fh5co_good_font"
+							<a th:href="@{/show/{id} (id = ${latestArticle.id})}" class="fh5co_good_font"
 							   th:text="${latestArticle.title}"></a>
 						</div>
 					</div>
@@ -56,7 +64,7 @@
 										   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm')}"></i></a>
 								</div>
 								<div class="" style="margin-left: -20px; margin-top: -7px;">
-									<a th:href="@{/home/show/{id} (id = ${article.id})}"
+									<a th:href="@{/show/{id} (id = ${article.id})}"
 									   class="fh5co_good_font_2" th:text="${article.title}"></a>
 								</div>
 							</div>
@@ -85,7 +93,7 @@
 						</div>
 					</div>
 					<div class="col-md-7 animate-box">
-						<a th:href="@{/home/show/{id} (id = ${article.id})}"
+						<a th:href="@{/show/{id} (id = ${article.id})}"
 						   class="fh5co_magna py-2"
 						   th:text="${article.title}"></a>
 						<br>
@@ -125,7 +133,7 @@
 						<div th:if="${currentPage > 0}">
 							<li class="page-item">
 								<a class="page-link"
-								   th:href="@{/home/(page=${currentPage - 1})}"
+								   th:href="@{/home(page=${currentPage - 1})}"
 								   aria-label="Previous">
 									<span aria-hidden="true">&laquo;</span>
 								</a>
@@ -142,14 +150,14 @@
 						          th:if="${pageNumber >= currentPage - 2 and pageNumber <= currentPage + 2}">
 							<li th:class="${pageNumber == currentPage} ? 'page-item active' : 'page-item'">
 								<a class="page-link" style="background-color: #f5bc04; color: #FFFFFF;"
-								   th:href="@{/home/(page=${pageNumber})}"
+								   th:href="@{/home(page=${pageNumber})}"
 								   th:text="${pageNumber + 1}"></a>
 							</li>
 						</th:block>
 						<div th:if="${currentPage < totalPages -1}">
 							<li class="page-item">
 								<a class="page-link"
-								   th:href="@{/home/(page=${currentPage + 1})}"
+								   th:href="@{/home(page=${currentPage + 1})}"
 								   aria-label="Next">
 									<span aria-hidden="true">&raquo;</span>
 								</a>
