@@ -40,6 +40,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                     .build();
         } else {
             log.error("user not found");
+            String errorMessage = "Incorrect user or password";
+            session.setAttribute("errorMessage", errorMessage);
             throw new UsernameNotFoundException("User not found");
         }
     }

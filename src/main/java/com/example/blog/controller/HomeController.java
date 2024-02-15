@@ -162,9 +162,7 @@ public class HomeController {
     @GetMapping("/close")
     public String close(HttpSession session){
         log.info("Close");
-        session.removeAttribute("idUser");
-        session.removeAttribute("name");
-        session.removeAttribute("type");
+        session.invalidate();
 
         return "redirect:/home";
     }

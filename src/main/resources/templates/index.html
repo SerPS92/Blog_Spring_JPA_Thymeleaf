@@ -40,13 +40,20 @@
 					<img th:src="@{/images/{img} (img = ${latestArticle.image})}" alt="img"/>
 					<div class="fh5co_suceefh5co_height_position_absolute"></div>
 					<div class="fh5co_suceefh5co_height_position_absolute_font">
-						<div class=""><a href="#" class="color_fff">
+						<div class="">
+							<a href="#" class="color_fff">
 							<i class="fa fa-clock-o" style="margin-left: -20px;"
-							   th:text="${#dates.format(latestArticle.date, 'dd/MM/yyyy HH:mm')}"></i></a>
+							   th:text="${#dates.format(latestArticle.date, 'dd/MM/yyyy HH:mm')}"></i>
+							</a>
 						</div>
 						<div class="" style="margin-left: -20px; margin-top: -7px;">
 							<a th:href="@{/show/{id} (id = ${latestArticle.id})}" class="fh5co_good_font"
 							   th:text="${latestArticle.title}"></a>
+						</div>
+						<div class="">
+							<a href="#" class="color_fff">
+								<i style="margin-left: -20px;" th:text="${latestArticle.user.name}"></i>
+							</a>
 						</div>
 					</div>
 				</div>
@@ -61,7 +68,8 @@
 								<div class="" style="margin-left: -20px; margin-top: -7px;">
 									<a href="#" class="color_fff">
 										<i class="fa fa-clock-o"
-										   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm')}"></i></a>
+										   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm') + ' - ' +
+										   article.user.name}"></i></a>
 								</div>
 								<div class="" style="margin-left: -20px; margin-top: -7px;">
 									<a th:href="@{/show/{id} (id = ${article.id})}"
@@ -100,7 +108,12 @@
 						<h12 th:text="${article.subtitle}"></h12>
 						<br>
 						<a class="fh5co_mini_time py-3"
-						   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm')} + ' Nombre de autor'"></a>
+						   th:text="${#dates.format(article.date, 'dd/MM/yyyy HH:mm')}">
+						</a>
+						<br>
+						<a class="fh5co_mini_time py-3"
+						   th:text="${article.user.name}">
+						</a>
 					</div>
 				</div>
 			

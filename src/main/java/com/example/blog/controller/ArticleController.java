@@ -1,8 +1,11 @@
 package com.example.blog.controller;
 
 import com.example.blog.model.Article;
+import com.example.blog.model.User;
 import com.example.blog.service.IArticleService;
+import com.example.blog.service.IUserService;
 import com.example.blog.service.UploadFileService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -25,13 +28,16 @@ public class ArticleController {
 
     private final UploadFileService uploadFileService;
     private final IArticleService articleService;
+    private final IUserService userService;
 
     private final Logger log = LoggerFactory.getLogger(ArticleController.class);
 
     public ArticleController(UploadFileService uploadFileService,
-                             IArticleService articleService) {
+                             IArticleService articleService,
+                             IUserService userService) {
         this.uploadFileService = uploadFileService;
         this.articleService = articleService;
+        this.userService = userService;
     }
 
     @GetMapping("/create")
@@ -55,14 +61,25 @@ public class ArticleController {
 
     @PostMapping("/save")
     public String save(Article article,
-                       @RequestParam("img") MultipartFile file) throws IOException {
+                       @RequestParam("img") MultipartFile file,
+                       HttpSession session) throws IOException {
         String nameImage = uploadFileService.saveImage(file);
         Date currentDate = new Date();
+
+        int idUser = (int) session.getAttribute("idUser");
+        Optional<User> optionalUser = userService.findById(idUser);
+        if(optionalUser.isPresent()){
+            User user = optionalUser.get();
+            article.setUser(user);
+        }
+
         article.setImage(nameImage);
         article.setDate(currentDate);
+
         log.info("Title: {}", article.getTitle());
         log.info("Subtitle: {}", article.getSubtitle());
         log.info("DATE: {}", article.getDate());
+        log.info("Id: {}", session.getAttribute("idUser") );
         articleService.save(article);
         return "redirect:/article/articles";
     }
