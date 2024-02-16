@@ -13,6 +13,7 @@ public interface IArticleService {
     Optional<Article> findById(Integer id);
     Page<Article> findAll(Pageable pageable);
     List<Article> findArticles(Sort sort);
+    List<Article> findByCategory(String category);
     void save(Article article);
     void deleteById(Integer id);
     void update(Article article);

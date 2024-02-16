@@ -28,12 +28,12 @@
 	<form th:action="@{/article/save}" method="post" enctype="multipart/form-data">
 		<div class="col-md-12">
 			<label class="control-label col-sm-12" for="title">Title</label>
-			<input type="text" id="title" name="title" class="form-control">
+			<input type="text" id="title" name="title" class="form-control" maxlength="70">
 		</div>
 		<br>
 		<div class="col-md-12">
 			<label class="control-label col-sm-12" for="subtitle">Subtitle</label>
-			<input type="text" name="subtitle" id="subtitle" class="form-control">
+			<input type="text" name="subtitle" id="subtitle" class="form-control" maxlength="110">
 		</div>
 		<br>
 		<div class="col-md-12">
@@ -46,6 +46,11 @@
 			<select id="category" name="category" class="col-sm-12">
 				<option>Select</option>
 				<option value="Sports">Sports</option>
+				<option value="Technology">Technology</option>
+				<option value="Finances">Finances</option>
+				<option value="Entertainment">Entertainment</option>
+				<option value="Global news">Global news</option>
+				<option value="Business">Business</option>
 			</select>
 		</div>
 		<br>

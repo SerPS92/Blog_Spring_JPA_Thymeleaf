@@ -34,6 +34,11 @@ public class IArticleServiceImpl implements IArticleService {
     }
 
     @Override
+    public List<Article> findByCategory(String category) {
+        return articleRepo.findByCategory(category);
+    }
+
+    @Override
     public void save(Article article) {
         articleRepo.save(article);
     }

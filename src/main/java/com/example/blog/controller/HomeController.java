@@ -121,6 +121,16 @@ public class HomeController {
         return "article";
     }
 
+    @GetMapping("/category/{category}")
+    public String category(@PathVariable(name = "category")String category,
+                           HttpSession session,
+                           Model model){
+        session.setAttribute("position", "blog");
+        List<Article> articles = articleService.findByCategory(category);
+        model.addAttribute("articles", articles);
+        return "blog";
+    }
+
     @GetMapping("/contact")
     public String contact(HttpSession session){
         session.setAttribute("position", "contact");

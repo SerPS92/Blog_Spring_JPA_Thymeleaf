@@ -345,9 +345,10 @@
 				<div class="clearfix"></div>
 				<div class="col-12 col-md-4 col-lg-3">
 					<div class="footer_main_title py-3"> About</div>
-					<div class="footer_sub_about pb-3"> Lorem Ipsum is simply dummy text of the printing and typesetting
-						industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-						unknown printer took a galley of type and scrambled it to make a type specimen book.
+					<div class="footer_sub_about pb-3"> Welcome to 24 News  – your hub for diverse news and updates.
+						We cover a broad spectrum of topics, from current affairs to lifestyle trends and tech highlights.
+						Stay informed and engaged with our bite-sized updates.
+						Thank you for choosing [Blog Name] for your daily dose of information.
 					</div>
 					<div class="footer_mediya_icon">
 						<div class="text-center d-inline-block"><a class="fh5co_display_table_footer">
@@ -367,38 +368,32 @@
 				<div class="col-12 col-md-3 col-lg-2">
 					<div class="footer_main_title py-3"> Category</div>
 					<ul class="footer_menu">
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Business</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Entertainment</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Environment</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Health</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Life style</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Politics</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; Technology</a></li>
-						<li><a href="#" class=""><i class="fa fa-angle-right"></i>&nbsp;&nbsp; World</a></li>
+						<li>
+							<a th:href="@{/category/{category} (category = 'Sports')}" class="">
+								<i class="fa fa-angle-right"></i>&nbsp;&nbsp; Sports</a>
+						</li>
+						<li>
+							<a th:href="@{/category/{category} (category = 'Technology')}" class="">
+								<i class="fa fa-angle-right"></i>&nbsp;&nbsp; Technology
+							</a>
+						</li>
+						<li>
+							<a th:href="@{/category/{category} (category = 'Finances')}"  class="">
+								<i class="fa fa-angle-right"></i>&nbsp;&nbsp; Finances</a>
+						</li>
+						<li>
+							<a th:href="@{/category/{category} (category = 'Entertainment')}" class="">
+								<i class="fa fa-angle-right"></i>&nbsp;&nbsp; Entertainment</a>
+						</li>
+						<li>
+							<a th:href="@{/category/{category} (category = 'Global news')}"  class="">
+								<i class="fa fa-angle-right"></i>&nbsp;&nbsp; Global news</a>
+						</li>
+						<li>
+							<a th:href="@{/category/{category} (category = 'Business')}"  class="">
+								<i class="fa fa-angle-right"></i>&nbsp;&nbsp; Business</a>
+						</li>
 					</ul>
-				</div>
-				<div class="col-12 col-md-5 col-lg-3 position_footer_relative">
-					<div class="footer_main_title py-3"> Most Viewed Posts</div>
-					<div class="footer_makes_sub_font"> Dec 31, 2016</div>
-					<a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-					<div class="footer_makes_sub_font"> Dec 31, 2016</div>
-					<a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-					<div class="footer_makes_sub_font"> Dec 31, 2016</div>
-					<a href="#" class="footer_post pb-4"> Success is not a good teacher failure makes you humble </a>
-					<div class="footer_position_absolute"><img src="images/footer_sub_tipik.png" alt="img"
-					                                           class="width_footer_sub_img"/></div>
-				</div>
-				<div class="col-12 col-md-12 col-lg-4 ">
-					<div class="footer_main_title py-3"> Last Modified Posts</div>
-					<a href="#" class="footer_img_post_6"><img src="/images/allef-vinicius-108153.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/32-450x260.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/download (1).jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/science-578x362.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/vil-son-35490.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/zack-minor-15104.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/download.jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/download (2).jpg" alt="img"/></a>
-					<a href="#" class="footer_img_post_6"><img src="/images/ryan-moreno-98837.jpg" alt="img"/></a>
 				</div>
 			</div>
 		</div>
@@ -412,9 +407,7 @@
 				</div>
 				<div class="col-12 col-md-6 spdp_right py-4">
 					<a href="#" class="footer_last_part_menu">Home</a>
-					<a href="Contact_us.html" class="footer_last_part_menu">About</a>
-					<a href="Contact_us.html" class="footer_last_part_menu">Contact</a>
-					<a href="blog.html" class="footer_last_part_menu">Latest News</a></div>
+					<a th:href="@{/contact}" class="footer_last_part_menu">Contact</a>
 			</div>
 		</div>
 	</div>

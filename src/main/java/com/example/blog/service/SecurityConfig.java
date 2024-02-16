@@ -35,7 +35,8 @@ public class SecurityConfig {
                                 "/blog/**",
                                 "/contact",
                                 "/send",
-                                "/show/{id}")
+                                "/show/{id}",
+                                "/category/{category}")
                         .permitAll()
                         .requestMatchers(
                                 "/article/**"
